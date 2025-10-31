@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2025 a las 22:19:29
+-- Tiempo de generación: 31-10-2025 a las 14:06:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -68,15 +68,18 @@ CREATE TABLE `noticias` (
   `titular` varchar(50) NOT NULL,
   `cuerpo` varchar(100) NOT NULL,
   `fecha` date DEFAULT NULL,
-  `enlace` varchar(1500) NOT NULL
+  `enlace` varchar(1500) NOT NULL,
+  `imagen_url` varchar(512) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `noticias`
 --
 
-INSERT INTO `noticias` (`id`, `titular`, `cuerpo`, `fecha`, `enlace`) VALUES
-(1, 'Noche de Música Clásica en el Teatro', 'El teatro municipal ofrecerá un concierto gratuito este viernes. Las entradas se retiran con anticip', '2025-10-31', 'http://avellaneda.gob.ar/cultura/concierto_clasico');
+INSERT INTO `noticias` (`id`, `titular`, `cuerpo`, `fecha`, `enlace`, `imagen_url`) VALUES
+(2, 'Gran Final del Torneo de Fútbol Infantil', 'La final se llevará a cabo en el emblemático Estadio Único de Avellaneda este sábado 02 de noviembre', '2025-10-31', 'http://avellaneda.gob.ar/deportes/final-infantil', 'cilindro.jpg'),
+(3, 'Nuevo Mural Homenaje a Darío y Maxi', 'Se inauguró un mural en la Avenida Hipólito Yrigoyen en conmemoración de Darío Santillán y Maximilia', '2025-10-30', 'http://avellaneda.gob.ar/cultura/mural-social', 'darioymaxi.jpg'),
+(4, 'Reapertura del Teatro Roma con Clásicos', 'Tras meses de renovación, el histórico Teatro Roma reabre sus puertas con una serie de funciones de ', '2025-10-29', 'http://avellaneda.gob.ar/cultura/teatro-roma', 'teatro.jpg');
 
 -- --------------------------------------------------------
 
@@ -150,7 +153,7 @@ ALTER TABLE `eventos_temporales`
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
