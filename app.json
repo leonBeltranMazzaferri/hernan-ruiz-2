@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "avellanedaUnida",
+    "slug": "avellanedaUnida",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/avellaneda.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/avellaneda.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/avellaneda.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.usuario.avellanedaunida",
+      "edgeToEdgeEnabled": true,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCYKl8rjBs0itPUaL7M_8qyZtnKBolI-2I"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "hostUri": "192.168.100.2:8081",  
+      "eas": {
+        "projectId": "655b0bf6-026a-41d8-9207-c1af9d9ea9f0"
+      }
+    }
+  }
+}
