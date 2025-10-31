@@ -17,7 +17,9 @@ export default function RegisterScreen({ navigation }) {
     }
 
     try {
-      const res = await fetch("http://ruizapp.duckdns.org:3001/register", {
+      // const res = await fetch("http://ruizapp.duckdns.org:3001/register", {
+      const res = await fetch("http://192.168.100.2:3001/register", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, apellido, telefono, email, password }),

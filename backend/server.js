@@ -16,7 +16,7 @@ const db = mysql.createConnection({
   user: "root",
   password: "",
   database: "appavellaneda",
-  port: 3308
+  // port: 3308
 });
 
 app.use('/eventos-activos', eventosActivosRouter(db));
@@ -144,6 +144,6 @@ app.get("/noticias", (req, res) => {
 
 
 // Levantar servidor en puerto 3001
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });

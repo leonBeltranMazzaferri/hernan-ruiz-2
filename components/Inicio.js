@@ -1,16 +1,31 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { useLanguage } from "./LanguageContext";
 import { useNavigation } from "@react-navigation/native";
 
-// 🟢 Componente de Tarjeta de Noticias (AHORA CON ESTRATEGIA DE BADGE HERMANO)
+// ** PALETA DE COLORES FINAL Y CORRECTA **
+const COLORS = {
+  // 🟢 Color Principal (Verde Fuerte para acciones y fondos de botón)
+  PRIMARY_GREEN:"#3eb11bff", 
+  // 🟢 Color de Texto (Todo el texto debe ser negro)
+  TEXT_BLACK: "#000000", 
+  // 🟢 Color Secundario (Fondo y contraste)
+  SECONDARY_WHITE: "#ffffffff", 
+  // Color para el fondo de la tarjeta resaltada (usando el blanco con opacidad, o un gris muy sutil)
+  HIGHLIGHT_CARD_BG: "#f0f0f0ff", // Cambiado a gris sutil para que se distinga mejor
+  // Colores del Badge (Mantenidos por ser una alerta visual, deben contrastar)
+  BADGE_BACKGROUND: '#ff0000ff', 
+  BADGE_TEXT: '#fbff00ff', 
+};
+
+// ⭐ REQUERIMIENTO DE IMAGEN
+const MAP_BACKGROUND_IMAGE = require('../fotos/fondo-inicio.png')
+
 const NewsCard = ({ t, navigation }) => {
   return (
-    // Paso 1: Un contenedor para la tarjeta Y el badge, para posicionar ambos relativamente
     <View style={styles.cardAndBadgeWrapper}>
-      {/* Paso 2: El contenedor de la tarjeta con su sombra y bordes */}
       <TouchableOpacity 
-        style={[styles.card, styles.highlight]}
+        style={[styles.card, styles.highlight]} 
         onPress={() => navigation.navigate("Noticias")}
       >
         <Text style={styles.cardTitle}>{t("recommendations") || "Noticias"}</Text>
@@ -18,8 +33,6 @@ const NewsCard = ({ t, navigation }) => {
           {t("recommendations_description") || "Mira las últimas novedades y eventos del municipio."}
         </Text>
       </TouchableOpacity>
-
-      {/* 🟢 BADGE DE NOTIFICACIÓN: Ahora es un hermano de la tarjeta, posicionado sobre ella */}
       <View style={styles.notificationBadge}>
         <Text style={styles.notificationText}>!</Text>
       </View>
@@ -33,46 +46,56 @@ export default function Inicio() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      
-      <View style={styles.header}>
-        <Text style={styles.titulo}>{t("app_name") || "avellanedaUnida"}</Text>
-        <Text style={styles.subtitulo}>
-          {t("app_subtitle") || "Explora y descubre tu entorno"}
-        </Text>
-      </View>
+    // 1. Usamos ImageBackground como contenedor principal
+    <ImageBackground source={MAP_BACKGROUND_IMAGE} style={styles.backgroundImage}>
+      {/* 2. Nuevo contenedor para centrar todo el contenido sobre la imagen */}
+      <View style={styles.containerContent}>
+        
+        <View style={styles.header}>
+          <Text style={styles.titulo}>{t("app_name") || "avellanedaUnida"}</Text>
+          <Text style={styles.subtitulo}>
+            {t("") || ""}
+          </Text>
+        </View>
 
-      
-      <View style={styles.content}>
-        {/* ENLACE 1: HISTORIA (Volvemos al estilo card original sin badge) */}
-        <TouchableOpacity 
-          style={styles.card}
-          onPress={() => navigation.navigate("Historia")} 
-        >
-          <Text style={styles.cardTitle}>{t("history") || "Historia"}</Text>
-          <Text style={styles.cardText}>
-            {t("history_description") || "Aprende sobre los lugares que visitas."}
+        
+        <View style={styles.content}>
+          {/* ENLACE 1: HISTORIA */}
+          <TouchableOpacity 
+            style={styles.card} 
+            onPress={() => navigation.navigate("Historia")} 
+          >
+            <Text style={styles.cardTitle}>{t("history") || "Historia"}</Text>
+            <Text style={styles.cardText}>
+              {t("history_description") || "Aprende sobre los lugares que visitas."}
+            </Text>
+          </TouchableOpacity>
+
+          {/* ENLACE 2: NOTICIAS (Resaltada) */}
+          <NewsCard t={t} navigation={navigation} />
+        </View>
+
+        {/* Botón inferior (Color Principal) */}
+        <TouchableOpacity style={styles.footerButton}>
+          <Text style={styles.footerText}>
+            {t("complaint_box") || "Buzón de quejas"}
           </Text>
         </TouchableOpacity>
-
-        {/* ENLACE 2: NOTICIAS (Usando el nuevo componente con badge flotante) */}
-        <NewsCard t={t} navigation={navigation} />
       </View>
-
-      {/* Botón inferior */}
-      <TouchableOpacity style={styles.footerButton}>
-        <Text style={styles.footerText}>
-          {t("complaint_box") || "Buzón de quejas"}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  // ⭐ ESTILOS DE IMAGEN Y CONTENIDO
+  backgroundImage: {
     flex: 1,
-    backgroundColor: "#E6F2F2",
+    width: '100%',
+    height: '100%',
+  },
+  containerContent: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)', 
     alignItems: "center",
     justifyContent: "space-between",
     paddingVertical: 40,
@@ -83,93 +106,92 @@ const styles = StyleSheet.create({
     marginTop: 30, 
   },
   titulo: { 
-    fontSize: 32, 
-    fontWeight: "bold", 
-    color: "#2B6E6E", 
+    fontSize: 45, 
+    fontWeight: "900", 
+    color: COLORS.TEXT_BLACK, 
     marginBottom: 6,
     marginTop: 20, 
+    textAlign: "center",
+    textShadowColor: COLORS.PRIMARY_GREEN, // Corregido: usando la variable de color
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
   },
   subtitulo: { 
     fontSize: 16, 
-    color: "#5C8C8C" 
+    color: COLORS.TEXT_BLACK 
   },
   content: { 
     width: "100%", 
     flex: 1, 
     justifyContent: "center" 
   },
-  // 🟢 NUEVO: Contenedor para la tarjeta Y el badge para posicionamiento relativo
   cardAndBadgeWrapper: {
-    marginVertical: 10, // Margen para separar las tarjetas
-    position: 'relative', // Para que el badge se posicione en relación a este
-    // No necesita overflow: 'visible' aquí, ya que el badge es hermano
+    marginVertical: 10,
+    position: 'relative',
   },
   card: {
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
-    // No necesitamos position: 'relative' aquí si el badge es hermano
+    backgroundColor: COLORS.SECONDARY_WHITE, // Fondo de tarjeta Blanco
+    padding: 10, // Aumentado a 20 para mejor espacio alrededor del texto centrado
+    borderRadius: 10, // Aumentado a 16 para bordes más suaves
+    // ⭐ CAMBIO CLAVE 1: Centrar los items dentro de la tarjeta
+    alignItems: 'center', 
+    shadowColor: COLORS.TEXT_BLACK,
+    shadowOffset: { width: 0, height: 4 }, 
+    shadowOpacity: 0.15, 
+    shadowRadius: 8, 
+    elevation: 2, 
+    marginBottom: 10
   },
-  highlight: { 
-    backgroundColor: "#DFF3F3" 
+  // ⭐ CAMBIO CLAVE 2: Centrar el texto del título
+  cardTitle: { 
+    fontSize: 22, 
+    fontWeight: "bold", 
+    color: COLORS.TEXT_BLACK, 
+    marginBottom: 8,
+    textAlign: 'center', 
   },
-  // 🟢 ESTILOS DEL BADGE DE NOTIFICACIÓN AJUSTADOS Y REFORZADOS
+  // ⭐ CAMBIO CLAVE 3: Centrar el texto descriptivo
+  cardText: { 
+    fontSize: 14, 
+    color: COLORS.TEXT_BLACK,
+    textAlign: 'center', 
+  },
+  // Resto de estilos se mantienen iguales
   notificationBadge: {
     position: 'absolute',
-    top: -12,     // Posición fuera del borde superior (relativo a cardAndBadgeWrapper)
-    right: -12,   // Posición fuera del borde derecho (relativo a cardAndBadgeWrapper)
-    backgroundColor: '#FFD700', 
-    borderRadius: 15, 
-    width: 30,      
-    height: 30,     
-    justifyContent: 'center',
-    alignItems: 'center',
+    top: -12, right: -12, 
+    backgroundColor: COLORS.BADGE_BACKGROUND, 
+    borderRadius: 15, width: 30, height: 30,     
+    justifyContent: 'center', alignItems: 'center',
     zIndex: 100, 
     borderWidth: 3, 
-    borderColor: 'white',
-    shadowColor: "#000",
+    borderColor: COLORS.SECONDARY_WHITE,
+    shadowColor: COLORS.TEXT_BLACK,
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.5, 
     shadowRadius: 3,
     elevation: 5,
   },
   notificationText: {
-    color: '#8B4513', 
+    color: COLORS.BADGE_TEXT, 
     fontWeight: 'bold',
-    fontSize: 18, 
-    lineHeight: 25, 
-  },
-  cardTitle: { 
-    fontSize: 20, 
-    fontWeight: "bold", 
-    color: "#2B6E6E", 
-    marginBottom: 6 
-  },
-  cardText: { 
-    fontSize: 14, 
-    color: "#4F8C8C" 
+    fontSize: 18, lineHeight: 25, 
   },
   footerButton: {
-    backgroundColor: "#2B6E6E",
+    backgroundColor: COLORS.PRIMARY_GREEN, 
     width: "100%",
-    paddingVertical: 18,
+    paddingVertical: 20,
     borderRadius: 12,
     alignItems: "center",
     marginTop: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 4,
+    shadowColor: COLORS.PRIMARY_GREEN,
+    shadowOffset: { width: 3, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 15,
   },
   footerText: { 
-    color: "white", 
-    fontSize: 16, 
-    fontWeight: "600" 
+    color: COLORS.SECONDARY_WHITE, 
+    fontSize: 17, fontWeight: "bold" 
   },
 });

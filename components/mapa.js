@@ -5,7 +5,9 @@ import * as Location from "expo-location";
 import MapViewDirections from 'react-native-maps-directions';
 
 //(REEMPLAZA tu IP y Puerto)
-const BASE_URL = 'http://ruizapp.duckdns.org:3001'; 
+// const BASE_URL = 'http://ruizapp.duckdns.org:3001'; 
+const BASE_URL = 'http://192.168.100.2:3001';
+
 const GOOGLE_MAPS_API_KEY = "AIzaSyCYKl8rjBs0itPUaL7M_8qyZtnKBolI-2I";
 
 const mapStyle = [
