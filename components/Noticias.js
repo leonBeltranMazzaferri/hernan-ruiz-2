@@ -6,11 +6,6 @@ import 'moment/locale/es';
 
 // ⚠️ Asegúrese de que esta IP sea la correcta de su backend
 const BASE_URL = 'http://192.168.100.2:3001'; 
-
-// MAPA DE IMÁGENES:
-// Usa require('../fotos/...') si 'fotos' está un nivel arriba de 'components'
-// Usa require('./fotos/...') si 'fotos' está dentro de 'components' y Noticias.js está al lado.
-// Si falló con './fotos', la opción '../fotos' es la correcta.
 const IMAGES_MAP = {
     'avellaneda.jpg': require('../fotos/avellaneda.jpg'),
     'cilindro.jpg': require('../fotos/cilindro.jpg'),
