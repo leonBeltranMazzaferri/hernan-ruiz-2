@@ -15,7 +15,8 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "appavellaneda"
+  database: "appavellaneda",
+  port: 3308
 });
 
 app.use('/eventos-activos', eventosActivosRouter(db));
