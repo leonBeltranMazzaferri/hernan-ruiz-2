@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "avellanedaUnida",
-    "slug": "avellanedaUnida",
+    "slug": "avellaneda",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/avellaneda.png",
@@ -29,10 +29,14 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "hostUri": "192.168.100.2:8081",  
+      "hostUri": "192.168.100.2:8081",
       "eas": {
-        "projectId": "655b0bf6-026a-41d8-9207-c1af9d9ea9f0"
+        "projectId": "bf26921a-82e0-4fd8-9bb0-4edd14094955"
       }
-    }
+    },
+    "owner": "leonbeltranmazaferi",
+    "plugins": [
+      "react-native-localize"
+    ]
   }
 }
