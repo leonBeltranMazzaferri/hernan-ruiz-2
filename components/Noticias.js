@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, FlatList, Image } from "react-native";
-import * as Linking from 'expo-linking';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, FlatList, Linking, Image } from "react-native";
 import { useLanguage } from "./LanguageContext";
 import moment from "moment"; 
 import 'moment/locale/es';

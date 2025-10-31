@@ -4,17 +4,17 @@
     "slug": "avellaneda",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/avellaneda.png",
+    "icon": "./assets/images/avellaneda.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/avellaneda.png",
+      "image": "./assets/images/avellaneda.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/avellaneda.png",
+        "foregroundImage": "./assets/images/avellaneda.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.usuario.avellanedaunida",
@@ -26,7 +26,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/favicon.png"
     },
     "extra": {
       "hostUri": "192.168.100.2:8081",
