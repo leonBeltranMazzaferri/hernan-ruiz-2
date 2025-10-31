@@ -5,7 +5,7 @@ import moment from "moment";
 import 'moment/locale/es';
 
 // ⚠️ Asegúrese de que esta IP sea la correcta de su backend
-const BASE_URL = 'http://192.168.100.2:3001'; 
+const BASE_URL = 'http://ruizapp.duckdns.org:3001'; 
 const IMAGES_MAP = {
     'avellaneda.jpg': require('../fotos/avellaneda.jpg'),
     'cilindro.jpg': require('../fotos/cilindro.jpg'),

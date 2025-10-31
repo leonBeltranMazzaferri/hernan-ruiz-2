@@ -14,7 +14,7 @@ export default function LoginScreen({ onLoginSuccess, navigation }) {
     }
 
     try {
-      const res = await fetch("http://192.168.100.2:3001/login", {
+      const res = await fetch("http://ruizapp.duckdns.org:3001/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
